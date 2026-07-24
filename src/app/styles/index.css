@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@import '../../../node_modules/@universe-forma/ui-pes/es/theme.css';
+@import './vars.css';
+@source "../../../node_modules/@universe-forma/ui-pes/es";
+
+@theme inline {
+  --radius-none: var(--radius-none);
+  --radius-1: var(--radius-1);
+  --radius-2: var(--radius-2);
+  --radius-3: var(--radius-3);
+  --radius-4: var(--radius-4);
+  --radius-5: var(--radius-5);
+  --radius-6: var(--radius-6);
+  --radius-7: var(--radius-7);
+  --radius-8: var(--radius-8);
+  --radius-9: var(--radius-9);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Montserrat Fallback', Arial, Helvetica, sans-serif;
+  }
+
+  html {
+    font-size: 100%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: #5766ec;
+
+    &:hover {
+      color: #5766ec;
+      opacity: 0.8;
+    }
+  }
+}
