@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 
 import { CHECKOUT, CHECKOUT_FILE } from '@/shared/constants/checkout';
 import { formatPlanPrice } from '@/shared/lib/price';
@@ -6,6 +6,7 @@ import { Divider } from '@/shared/ui/divider';
 import { DocumentPlaceholder } from '@/shared/ui/documentPlaceholder';
 import { HeaderFlowSection } from '@/widgets/headerFlowSection';
 
+import { CardPaymentForm } from '../components/cardPaymentForm';
 import { CheckoutDisclaimer } from '../components/checkoutDisclaimer';
 import { PaymentMethods } from '../components/paymentMethods';
 import { SecuredPaymentNote } from '../components/securedPaymentNote';
@@ -38,6 +39,17 @@ import {
 export const GroupC: FC = () => {
   const trialPrice = formatPlanPrice(CHECKOUT.trialPriceCents);
   const recurringPrice = formatPlanPrice(CHECKOUT.recurringPriceCents);
+
+  const [isCardFormOpen, setIsCardFormOpen] = useState(false);
+  const cardFormRef = useRef<HTMLDivElement>(null);
+
+  // Keep the unfolded form fully on screen — scroll the minimum needed
+  // so the user never has to scroll to see the whole dropdown.
+  useEffect(() => {
+    if (isCardFormOpen) {
+      cardFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [isCardFormOpen]);
 
   return (
     <>
@@ -83,7 +95,16 @@ export const GroupC: FC = () => {
           <TotalDuePrice data-testid="total-due-price">{trialPrice}</TotalDuePrice>
         </TotalDueRow>
 
-        <PaymentMethods layout="grid" />
+        <PaymentMethods
+          layout="grid"
+          onCardClick={() => setIsCardFormOpen((isOpen) => !isOpen)}
+          isCardExpanded={isCardFormOpen}
+          cardDropdown={
+            isCardFormOpen ? (
+              <CardPaymentForm ref={cardFormRef} onClickOutside={() => setIsCardFormOpen(false)} />
+            ) : undefined
+          }
+        />
 
         <TrialCaption>
           <span>7-day trial for {trialPrice}</span>

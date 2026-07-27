@@ -52,6 +52,12 @@ export const BrandLogo = styled.img`
   height: 26px;
 `;
 
+/** Anchor for the card details dropdown that opens under the button. */
+export const CardButtonCell = styled.div`
+  position: relative;
+  min-width: 0;
+`;
+
 export const CardButton = styled.button`
   ${buttonBase}
   justify-content: space-between;

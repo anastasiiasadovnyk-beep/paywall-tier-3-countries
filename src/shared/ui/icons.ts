@@ -9,6 +9,7 @@ export { ReactComponent as CheckCircleIcon } from '@material-design-icons/svg/ro
 export { ReactComponent as CheckIcon } from '@material-design-icons/svg/round/check.svg?react';
 export { ReactComponent as EventAvailableIcon } from '@material-design-icons/svg/round/event_available.svg?react';
 export { ReactComponent as HeadsetMicIcon } from '@material-design-icons/svg/round/headset_mic.svg?react';
+export { ReactComponent as InfoIcon } from '@material-design-icons/svg/round/info.svg?react';
 export { ReactComponent as LockIcon } from '@material-design-icons/svg/round/lock.svg?react';
 export { ReactComponent as VerifiedIcon } from '@material-design-icons/svg/round/verified.svg?react';
 export { ReactComponent as VerifiedUserIcon } from '@material-design-icons/svg/round/verified_user.svg?react';
