@@ -25,6 +25,10 @@ export const Tab = styled.button<{ $active?: boolean }>`
   border: 1px solid
     ${({ $active }) =>
       $active ? 'var(--color-primary)' : 'var(--color-outline-border, #cdd5df)'};
+  /* The inner ring reads as the reference's 2px selected border
+     without the layout shifting when the selection changes. */
+  box-shadow: ${({ $active }) =>
+    $active ? 'inset 0 0 0 1px var(--color-primary)' : 'none'};
   background: ${({ $active }) =>
     $active
       ? 'var(--color-state-primary-hover, rgba(73, 136, 252, 0.08))'
@@ -32,7 +36,8 @@ export const Tab = styled.button<{ $active?: boolean }>`
   cursor: pointer;
   transition:
     border-color 0.15s ease,
-    background 0.15s ease;
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 
   img,
   svg {

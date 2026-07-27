@@ -9,6 +9,7 @@ import {
   FileDetails,
   FileMeta,
   FileNameRow,
+  FileNameText,
   FileRow,
   FileThumbnail,
   Panel,
@@ -43,7 +44,7 @@ export const DownloadPanel: FC<IDownloadPanelProps> = ({ fileName, progressPerce
         <FileDetails>
           <FileNameRow>
             <PdfChip>PDF</PdfChip>
-            {fileName}
+            <FileNameText>{fileName}</FileNameText>
           </FileNameRow>
           <FileMeta>
             <span>{CHECKOUT_FILE.sizeLabel}</span>

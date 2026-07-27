@@ -64,6 +64,14 @@ export const FileNameRow = styled.div`
   }
 `;
 
+/** Truncates with an ellipsis instead of overflowing the panel. */
+export const FileNameText = styled.span`
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
 export const PdfChip = styled.span`
   display: inline-flex;
   align-items: center;
