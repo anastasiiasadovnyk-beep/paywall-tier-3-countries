@@ -18,9 +18,10 @@ export const Tab = styled.button<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 56px;
+  /* Same design-system sizing and corner radius as the payment buttons. */
+  height: 52px;
   padding: 0 12px;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-2);
   border: 1px solid
     ${({ $active }) =>
       $active ? 'var(--color-primary)' : 'var(--color-outline-border, #cdd5df)'};
