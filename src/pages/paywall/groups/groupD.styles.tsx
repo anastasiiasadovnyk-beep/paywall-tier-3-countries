@@ -254,12 +254,13 @@ export const TimelineTitle = styled.div`
   line-height: 20px;
 `;
 
-export const TimelineDescription = styled.div`
+export const TimelineDescription = styled.div<{ $bold?: boolean }>`
   color: var(--Text-text_secondary, #757575);
   font-family: Montserrat;
   font-size: 13px;
-  /* Design-system caption-emph weight — the text is caption-sized (13/18). */
-  font-weight: var(--text-caption-emph--font-weight, 700);
+  /* The renewal terms use the design-system caption-emph weight —
+     the text is caption-sized (13/18). */
+  font-weight: ${({ $bold }) => ($bold ? 'var(--text-caption-emph--font-weight, 700)' : 500)};
   line-height: 18px;
 `;
 

@@ -119,7 +119,9 @@ export const GroupD: FC = () => {
                     </TimelineIcon>
                     <TimelineTexts>
                       <TimelineTitle>{item.title}</TimelineTitle>
-                      <TimelineDescription>{item.description}</TimelineDescription>
+                      <TimelineDescription $bold={item.isBold}>
+                        {item.description}
+                      </TimelineDescription>
                     </TimelineTexts>
                   </TimelineItem>
                 );

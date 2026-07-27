@@ -37,7 +37,7 @@ export const TRIAL_INCLUDES: { text: string; isBold?: boolean }[] = [
 ];
 
 /** Group D — trial timeline under the file preview. */
-export const TRIAL_TIMELINE: { icon: 'lock' | 'calendar' | 'shield'; title: string; description: string }[] = [
+export const TRIAL_TIMELINE: { icon: 'lock' | 'calendar' | 'shield'; title: string; description: string; isBold?: boolean }[] = [
   {
     icon: 'lock',
     title: 'Your 7-day trial begins',
@@ -47,6 +47,7 @@ export const TRIAL_TIMELINE: { icon: 'lock' | 'calendar' | 'shield'; title: stri
     icon: 'calendar',
     title: '29 July 2026',
     description: 'After 7 days trial, your plan renews at $44.95 automatically every 4 weeks',
+    isBold: true,
   },
   {
     icon: 'shield',
