@@ -33,7 +33,7 @@ interface IPaymentMethodsProps {
   cardDropdown?: ReactNode;
 }
 
-const CARD_BRANDS = [
+export const CARD_BRANDS = [
   { name: 'Mastercard', logo: mastercardWhite },
   { name: 'Maestro', logo: maestroWhite },
   { name: 'Visa', logo: visaWhite },

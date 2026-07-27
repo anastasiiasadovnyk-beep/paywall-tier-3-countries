@@ -20,11 +20,16 @@ import {
 import { HeaderFlowSection } from '@/widgets/headerFlowSection';
 
 import { CheckoutDisclaimer } from '../components/checkoutDisclaimer';
+import { DownloadPanel } from '../components/downloadPanel';
 import { PaymentMethods } from '../components/paymentMethods';
+import { PaymentMethodTabs } from '../components/paymentMethodTabs';
 import { TrustBadges } from '../components/trustBadges';
 import {
   CheckoutColumns,
   Content,
+  DesktopBadges,
+  DesktopPayments,
+  DisclaimerBlock,
   FeatureCard,
   FeatureDescription,
   FeatureGrid,
@@ -34,6 +39,8 @@ import {
   FileCardTitleRow,
   FileName,
   LeftColumn,
+  MobilePanel,
+  MobilePayments,
   PageTitle,
   PdfChip,
   PlaceholderPage,
@@ -78,6 +85,13 @@ export const GroupD: FC = () => {
         <PageTitle>Final step to download your file</PageTitle>
         <CheckoutColumns>
           <LeftColumn>
+            <MobilePanel>
+              <DownloadPanel
+                fileName={CHECKOUT_FILE.compressedFileName}
+                progressPercent={CHECKOUT_FILE.progressPercentD}
+              />
+            </MobilePanel>
+
             <FileCard data-testid="file-ready-card">
               <FileCardTitleRow>
                 <CheckCircleIcon />
@@ -112,7 +126,9 @@ export const GroupD: FC = () => {
               })}
             </TimelineList>
 
-            <TrustBadges badges={['encrypted', 'support', 'users']} />
+            <DesktopBadges>
+              <TrustBadges badges={['encrypted', 'support', 'users']} />
+            </DesktopBadges>
           </LeftColumn>
 
           <RightColumn>
@@ -121,9 +137,16 @@ export const GroupD: FC = () => {
               <TotalDuePrice data-testid="total-due-price">{trialPrice}</TotalDuePrice>
             </TotalDueRow>
 
-            <PaymentMethods layout="stacked" />
+            <DesktopPayments>
+              <PaymentMethods layout="stacked" />
+            </DesktopPayments>
+            <MobilePayments>
+              <PaymentMethodTabs />
+            </MobilePayments>
 
-            <CheckoutDisclaimer variant="full" />
+            <DisclaimerBlock>
+              <CheckoutDisclaimer variant="full" />
+            </DisclaimerBlock>
 
             <UnlockTitle>Everything unlocks the moment you start</UnlockTitle>
             <FeatureGrid>

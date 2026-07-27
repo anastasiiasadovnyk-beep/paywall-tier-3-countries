@@ -29,13 +29,21 @@ export const PageTitle = styled.h1`
   line-height: 50px;
   margin: 0 0 32px;
 
+  /* Hidden on mobile so the payment area and the legal text fit the
+     first viewport, as on the reference mobile checkout. */
   @media (max-width: 760px) {
-    font-size: 22px;
-    line-height: 28px;
-    margin-bottom: 20px;
+    display: none;
   }
 `;
 
+/*
+ * Mobile reflow: below 760px both columns dissolve (display: contents)
+ * and their children become items of this flex column, reordered via
+ * "order" so the fold reads: compact download panel → total due →
+ * payment tabs → legal text, with the timeline and the feature grid
+ * after. The big file card, the green trust badges and the stacked
+ * payment buttons are desktop-only.
+ */
 export const CheckoutColumns = styled.div`
   display: flex;
   align-items: flex-start;
@@ -48,7 +56,8 @@ export const CheckoutColumns = styled.div`
 
   @media (max-width: 760px) {
     flex-direction: column;
-    gap: 24px;
+    align-items: stretch;
+    gap: 16px;
   }
 `;
 
@@ -60,8 +69,7 @@ export const LeftColumn = styled.div`
   max-width: 460px;
 
   @media (max-width: 760px) {
-    width: 100%;
-    max-width: none;
+    display: contents;
   }
 `;
 
@@ -73,7 +81,17 @@ export const RightColumn = styled.div`
   min-width: 0;
 
   @media (max-width: 760px) {
-    width: 100%;
+    display: contents;
+  }
+`;
+
+/** Group-C-style compact download panel — the mobile file card. */
+export const MobilePanel = styled.div`
+  display: none;
+
+  @media (max-width: 760px) {
+    display: block;
+    order: 1;
   }
 `;
 
@@ -88,6 +106,10 @@ export const FileCard = styled.div`
   /* Same card treatment as the group C download panel. */
   background: var(--Background-bg_white, #fff);
   box-shadow: 0 8px 32px 0 rgba(17, 24, 40, 0.08);
+
+  @media (max-width: 760px) {
+    display: none;
+  }
 `;
 
 export const FileCardTitleRow = styled.div`
@@ -182,6 +204,17 @@ export const TimelineList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @media (max-width: 760px) {
+    order: 5;
+  }
+`;
+
+/** Green trust badges — desktop-only, dropped from the mobile layout. */
+export const DesktopBadges = styled.div`
+  @media (max-width: 760px) {
+    display: none;
+  }
 `;
 
 export const TimelineItem = styled.div`
@@ -225,7 +258,8 @@ export const TimelineDescription = styled.div`
   color: var(--Text-text_secondary, #757575);
   font-family: Montserrat;
   font-size: 13px;
-  font-weight: 500;
+  /* Design-system caption-emph weight — the text is caption-sized (13/18). */
+  font-weight: var(--text-caption-emph--font-weight, 700);
   line-height: 18px;
 `;
 
@@ -235,6 +269,10 @@ export const TotalDueRow = styled.div`
   justify-content: space-between;
   gap: 16px;
   width: 100%;
+
+  @media (max-width: 760px) {
+    order: 2;
+  }
 `;
 
 export const TotalDueTitle = styled.div`
@@ -251,6 +289,39 @@ export const TotalDuePrice = styled.div`
   font-size: 26px;
   font-weight: 800;
   line-height: 32px;
+
+  /* Primary-blue price on mobile, as on the reference checkout. */
+  @media (max-width: 760px) {
+    color: var(--Text-text_primary, var(--color-primary));
+  }
+`;
+
+/** Stacked payment buttons — desktop-only; mobile uses the tabs. */
+export const DesktopPayments = styled.div`
+  width: 100%;
+
+  @media (max-width: 760px) {
+    display: none;
+  }
+`;
+
+/** Payment method tabs + pay button — the mobile payment variant. */
+export const MobilePayments = styled.div`
+  display: none;
+
+  @media (max-width: 760px) {
+    display: block;
+    order: 3;
+  }
+`;
+
+/** Anchors the legal text right under the payment area on mobile. */
+export const DisclaimerBlock = styled.div`
+  width: 100%;
+
+  @media (max-width: 760px) {
+    order: 4;
+  }
 `;
 
 export const UnlockTitle = styled.h2`
@@ -260,6 +331,10 @@ export const UnlockTitle = styled.h2`
   font-weight: 700;
   line-height: 26px;
   margin: 4px 0 0;
+
+  @media (max-width: 760px) {
+    order: 6;
+  }
 `;
 
 export const FeatureGrid = styled.div`
@@ -267,6 +342,10 @@ export const FeatureGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   width: 100%;
+
+  @media (max-width: 760px) {
+    order: 7;
+  }
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
